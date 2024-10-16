@@ -1,0 +1,29 @@
+---
+title: "Coding_Excercises"
+author: "F. Haberecht"
+date: "2024-10-16"
+output: html_document
+---
+```{r}
+source("Setup.R")
+```
+```{r}
+data("knz_bison")
+```
+```{r}
+knz_bison$age <- knz_bison$rec_year - knz_bison$animal_yob
+```
+```{r}
+filtered_bison <- filter(knz_bison, animal_weight >= 800)
+```
+```{r}
+filtered_bison %>%
+  ggplot(aes(x = animal_sex, y = animal_weight))+
+  geom_boxplot()
+```
+```{r}
+filtered_bison %>%
+  t_test(animal_weight~animal_sex, var.equal = FALSE, detailed = TRUE)
+```
+
+
